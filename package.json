@@ -1,0 +1,10 @@
+{
+  "name": "mobile-controller",
+  "private": true,
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "vite": "^7.0.0"
+  }
+}
