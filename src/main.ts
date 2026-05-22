@@ -1,13 +1,3 @@
-declare global {
-  interface ImportMetaEnv {
-    readonly VITE_WEBSOCKET_URL: string
-  }
-
-  interface ImportMeta {
-    readonly env: ImportMetaEnv
-  }
-}
-
 const ws = new WebSocket(import.meta.env.VITE_WEBSOCKET_URL)
 
 const app = document.getElementById('app')!
@@ -39,7 +29,7 @@ app.appendChild(input)
 app.appendChild(connectButton)
 
 ws.onopen = () => {
-    console.log('connected')
+  console.log('connected')
 }
 
 const rollDiceButton = document.createElement('button')
@@ -47,15 +37,15 @@ rollDiceButton.innerText = 'Jogar dado'
 app.appendChild(rollDiceButton)
 
 rollDiceButton.addEventListener('click', function (event) {
-        console.log(`Button ${this.id} clicked!`);
-        ws.send(
-            JSON.stringify({
-                type: 'input',
-                payload: {
-                    button: this.id
-                }
-            })
-        )
-    });
+  console.log(`Button ${this.id} clicked!`);
+  ws.send(
+    JSON.stringify({
+      type: 'input',
+      payload: {
+        button: 'roll_dice'
+      }
+    })
+  )
+});
 
-export {}
+export { }

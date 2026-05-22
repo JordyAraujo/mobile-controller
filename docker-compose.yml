@@ -12,11 +12,8 @@ services:
     stdin_open: true
     tty: true
     networks:
-      - appnet
+      - websocket-net
 
 networks:
-  appnet:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.22.0.0/16
+  websocket-net:
+    external: true
