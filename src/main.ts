@@ -10,16 +10,20 @@ const connectButton = document.createElement('button')
 
 connectButton.innerText = 'CONNECT'
 
-connectButton.onclick = () => {
-  const sessionText = document.createElement('h1')
+function generateClientId() {
+  return Math.random()
+    .toString(36)
+    .substring(2, 8)
+    .toUpperCase()
+}
 
-  sessionText.innerText = 'clicou ' + input.value
-  app.appendChild(sessionText)
+connectButton.onclick = () => {
   ws.send(
     JSON.stringify({
       type: 'join_session',
       payload: {
-        sessionId: input.value
+        sessionId: input.value,
+        clientId: generateClientId()
       }
     })
   )
@@ -48,4 +52,12 @@ rollDiceButton.addEventListener('click', function (event) {
   )
 });
 
-export { }
+ws.onmessage = (event) => {
+  const message = JSON.parse(event.data)
+  if (message.type === 'player_joined') {
+    const sessionText = document.createElement('h1')
+    sessionText.innerText = `Jogador entrou na sessão: ${message.payload.sessionId}`
+    console.log(sessionText.innerText)
+    app.appendChild(sessionText)
+  }
+}
