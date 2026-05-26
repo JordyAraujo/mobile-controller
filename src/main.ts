@@ -54,9 +54,14 @@ rollDiceButton.addEventListener('click', function (event) {
 
 ws.onmessage = (event) => {
   const message = JSON.parse(event.data)
-  if (message.type === 'player_joined') {
+  if (message.type === 'joined_session') {
     const sessionText = document.createElement('h1')
     sessionText.innerText = `Jogador entrou na sessão: ${message.payload.sessionId}`
+    console.log(sessionText.innerText)
+    app.appendChild(sessionText)
+  } else if (message.type === 'error') {
+    const sessionText = document.createElement('h1')
+    sessionText.innerText = message.payload.message
     console.log(sessionText.innerText)
     app.appendChild(sessionText)
   }
