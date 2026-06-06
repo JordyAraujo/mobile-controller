@@ -20,13 +20,6 @@ export function handleMessage(
             )
             break
 
-        case 'session_joined':
-            console.log(
-                'joined session',
-                message.payload
-            )
-            break
-
         default:
             console.warn(
                 'unknown websocket message',

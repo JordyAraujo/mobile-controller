@@ -27,12 +27,9 @@ onMounted(() => {
 function join() {
   if (!name.value.trim()) return
 
-store.setSelf({
-  name: name.value,
-  color: selectedColor.value
-})
+  store.setSelf(name.value, selectedColor.value)
 
-websocketService.joinSession()
+  websocketService.joinSession()
 
   router.push('/lobby')
 }
@@ -45,19 +42,11 @@ websocketService.joinSession()
 
       <p>Escolha seu nome e sua cor</p>
 
-      <input
-        v-model="name"
-        placeholder="Seu nome"
-      />
+      <input v-model="name" placeholder="Seu nome" />
 
       <div class="colors">
-        <button
-          v-for="color in colors"
-          :key="color"
-          :style="{ backgroundColor: color }"
-          :class="{ selected: color === selectedColor }"
-          @click="selectedColor = color"
-        />
+        <button v-for="color in colors" :key="color" :style="{ backgroundColor: color }"
+          :class="{ selected: color === selectedColor }" @click="selectedColor = color" />
       </div>
 
       <button class="primary" @click="join">

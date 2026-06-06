@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { store } from '../store'
+import { websocketService } from '../services/websocket'
 
 const router = useRouter()
 
@@ -32,7 +33,7 @@ function startGame() {
             :style="{ backgroundColor: player.color }"
           />
 
-          {{ player.name }}
+          {{ player.playerName }}
         </li>
       </ul>
 
