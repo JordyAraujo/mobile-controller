@@ -12,14 +12,13 @@ export const actions = {
     state.sessionId = sessionId
   },
 
-  setSelf(name: string, color: string) {
+  setSelf(playerName: string, color: string | null) {
     state.self = {
       clientId: generateClientId(),
-      name,
+      playerName,
       color
     }
   },
-
 
   clearSelf() {
     state.self = null
@@ -27,6 +26,11 @@ export const actions = {
 
   setPlayers(players: Player[]) {
     state.players = players
+    const self = players.find(player => player.clientId === state.self?.clientId);
+    if (self && state.self) {
+      state.self.color = self.color
+    }
+    console.log('state.self.color:', state.self?.color)
   },
 
   addPlayer(player: Player) {
@@ -53,21 +57,15 @@ export const actions = {
 
   resetLobby() {
     state.players = []
-
     state.gameStarted = false
-
     state.currentTurnClientId = null
   },
 
   reset() {
     state.sessionId = ''
-
     state.self = null
-
     state.players = []
-
     state.gameStarted = false
-
     state.currentTurnClientId = null
   }
 }

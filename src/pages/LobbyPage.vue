@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-
 import { store } from '../store'
 import { websocketService } from '../services/websocket'
 
 const router = useRouter()
-
 const canStart = computed(() =>
   store.state.players.length > 1 &&
   store.state.players.length % 2 === 0
 )
 
 function startGame() {
-    websocketService.startGame()
-    router.push('/controller')
+  websocketService.startGame()
+  router.push('/controller')
 }
 </script>
 
@@ -22,26 +20,13 @@ function startGame() {
   <main class="page">
     <section class="card">
       <h1>🎉 Sala {{ store.state.sessionId }}</h1>
-
       <ul class="players">
-        <li
-          v-for="player in store.state.players"
-          :key="player.clientId"
-        >
-          <span
-            class="player-color"
-            :style="{ backgroundColor: player.color }"
-          />
-
+        <li v-for="player in store.state.players" :key="player.clientId">
+          <span class="player-color" :style="{ backgroundColor: player.color ? player.color : '#FFFFFF' }" />
           {{ player.playerName }}
         </li>
       </ul>
-
-      <button
-        class="primary"
-        :disabled="!canStart"
-        @click="startGame"
-      >
+      <button class="primary" :disabled="!canStart" @click="startGame">
         Iniciar jogo
       </button>
     </section>

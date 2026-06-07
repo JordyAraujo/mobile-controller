@@ -10,12 +10,7 @@ class WebSocketService {
     private socket?: WebSocket
 
     connect() {
-        if (
-            this.socket?.readyState ===
-            WebSocket.OPEN
-        ) {
-            return
-        }
+        if (this.socket?.readyState === WebSocket.OPEN) return
 
         const url =
             import.meta.env.VITE_WS_URL ??
@@ -24,38 +19,22 @@ class WebSocketService {
         this.socket = new WebSocket(url)
 
         this.socket.onopen = () => {
-            console.log(
-                'websocket connected'
-            )
+            console.log('websocket connected')
         }
 
         this.socket.onclose = () => {
-            console.log(
-                'websocket disconnected'
-            )
+            console.log('websocket disconnected')
         }
 
         this.socket.onmessage = event => {
-            const message =
-                JSON.parse(event.data)
-
-            handleMessage(message)
+            handleMessage(JSON.parse(event.data))
         }
     }
 
     private send(
         message: unknown
     ) {
-        if (!this.socket) {
-            return
-        }
-
-        if (
-            this.socket.readyState !==
-            WebSocket.OPEN
-        ) {
-            return
-        }
+        if (!this.socket || (this.socket.readyState !== WebSocket.OPEN)) return
 
         this.socket.send(
             JSON.stringify(message)
@@ -69,19 +48,11 @@ class WebSocketService {
 
         this.send({
             type: 'join_session',
-
             payload: {
-                sessionId:
-                    store.state.sessionId,
-
-                clientId:
-                    store.state.self.clientId,
-
-                playerName:
-                    store.state.self.name,
-
-                color:
-                    store.state.self.color
+                sessionId: store.state.sessionId,
+                clientId: store.state.self.clientId,
+                playerName: store.state.self.playerName,
+                color: store.state.self.color
             }
         })
     }
@@ -103,7 +74,6 @@ class WebSocketService {
     ) {
         this.send({
             type: 'move',
-
             payload: {
                 direction
             }

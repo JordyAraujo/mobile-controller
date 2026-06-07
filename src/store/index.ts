@@ -4,8 +4,6 @@ import { getters } from './getters'
 
 export const store = {
   state,
-
   ...actions,
-
   ...getters
 }
