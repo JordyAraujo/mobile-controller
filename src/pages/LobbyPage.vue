@@ -12,7 +12,6 @@ const canStart = computed(() =>
 
 function startGame() {
   websocketService.startGame()
-  router.push('/controller')
 }
 </script>
 

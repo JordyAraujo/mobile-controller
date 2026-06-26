@@ -1,4 +1,4 @@
-import { state, type Player } from './state'
+import { state, Player } from './state'
 
 function generateClientId() {
   return Math.random()
@@ -26,7 +26,7 @@ export const actions = {
 
   setPlayers(players: Player[]) {
     state.players = players
-    const self = players.find(player => player.clientId === state.self?.clientId);
+    const self = players.find(player => player.clientId === state.self?.clientId)
     if (self && state.self) {
       state.self.color = self.color
     }

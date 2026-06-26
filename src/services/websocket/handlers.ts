@@ -1,3 +1,4 @@
+import router from '../../router'
 import { store } from '../../store'
 
 export function handleMessage(
@@ -12,6 +13,7 @@ export function handleMessage(
 
         case 'game_started':
             store.startGame()
+            router.push('/controller')
             break
 
         case 'turn_changed':

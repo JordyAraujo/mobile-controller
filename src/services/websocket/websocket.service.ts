@@ -13,7 +13,7 @@ class WebSocketService {
         if (this.socket?.readyState === WebSocket.OPEN) return
 
         const url =
-            import.meta.env.VITE_WS_URL ??
+            import.meta.env.VITE_WEBSOCKET_URL ??
             'ws://localhost:3001'
 
         this.socket = new WebSocket(url)
