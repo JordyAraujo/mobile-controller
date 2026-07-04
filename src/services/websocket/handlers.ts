@@ -6,9 +6,15 @@ export function handleMessage(
 ) {
     switch (message.type) {
         case 'players_updated':
-            store.setPlayers(
-                message.payload.players
-            )
+            if(message.payload.players.some((player: { clientId: string }) => player.clientId === store.state.self?.clientId)) {
+                store.setPlayers(
+                    message.payload.players
+                )
+                store.setSessionId(
+                    message.payload.sessionId
+                )
+                router.push('/lobby')
+            }
             break
 
         case 'game_started':

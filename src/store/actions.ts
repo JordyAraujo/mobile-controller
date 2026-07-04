@@ -12,7 +12,7 @@ export const actions = {
     state.sessionId = sessionId
   },
 
-  setSelf(playerName: string, color: string | null) {
+  setSelf(playerName: string, color: string | null = null) {
     state.self = {
       clientId: generateClientId(),
       playerName,

@@ -5,23 +5,21 @@ import { store } from '../store'
 import { websocketService } from '../services/websocket'
 
 const router = useRouter()
-const name = ref('')
-const initialColor = ref('#ef4444')
+const playerName = ref('')
 
 onMounted(() => {
   const params = new URLSearchParams(window.location.search)
-  if (!params.has('id')) {
+  if (!params.has('id') || params.get('id') === '') {
     router.replace({ name: 'NotFound'})
     return
   }
-  store.setSessionId(params.get('id') ?? '')
 })
 
 function join() {
-  if (!name.value.trim()) return
-  store.setSelf(name.value, initialColor.value)
-  websocketService.joinSession()
-  router.push('/lobby')
+  if (!playerName.value.trim()) return
+  store.setSelf(playerName.value)
+  const params = new URLSearchParams(window.location.search)
+  websocketService.joinSession(params.get('id') ?? '', playerName.value)
 }
 </script>
 
@@ -30,7 +28,7 @@ function join() {
     <section class="card">
       <h1>🎲 Ludomigos</h1>
       <p>Escolha seu nome e sua cor</p>
-      <input v-model="name" placeholder="Seu nome" />
+      <input v-model="playerName" placeholder="Seu nome" />
       <button class="primary" @click="join">
         Entrar
       </button>

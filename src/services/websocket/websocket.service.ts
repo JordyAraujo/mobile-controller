@@ -11,12 +11,8 @@ class WebSocketService {
 
     connect() {
         if (this.socket?.readyState === WebSocket.OPEN) return
-
-        const url =
-            import.meta.env.VITE_WEBSOCKET_URL ??
-            'ws://localhost:3001'
-
-        this.socket = new WebSocket(url)
+            
+        this.socket = new WebSocket(import.meta.env.VITE_WEBSOCKET_URL ?? 'ws://localhost:3001')
 
         this.socket.onopen = () => {
             console.log('websocket connected')
@@ -41,18 +37,18 @@ class WebSocketService {
         )
     }
 
-    joinSession() {
-        if (!store.state.self) {
+    joinSession(sessionId: string, playerName: string) {
+        if (!store.state.self || sessionId === '') {
             return
         }
 
         this.send({
             type: 'join_session',
             payload: {
-                sessionId: store.state.sessionId,
+                sessionId: sessionId,
                 clientId: store.state.self.clientId,
-                playerName: store.state.self.playerName,
-                color: store.state.self.color
+                playerName: playerName,
+                color: null
             }
         })
     }

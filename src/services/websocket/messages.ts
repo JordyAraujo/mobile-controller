@@ -9,11 +9,8 @@ export interface JoinSessionMessage {
 
     payload: {
         sessionId: string
-
         clientId: string
-
         playerName: string
-
         color: string
     }
 }
