@@ -10,6 +10,10 @@ const initialColor = ref('#ef4444')
 
 onMounted(() => {
   const params = new URLSearchParams(window.location.search)
+  if (!params.has('id')) {
+    router.replace({ name: 'NotFound'})
+    return
+  }
   store.setSessionId(params.get('id') ?? '')
 })
 

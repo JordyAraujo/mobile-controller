@@ -1,7 +1,17 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { store } from '../store'
 import { Direction, websocketService } from '../services/websocket'
+
+const router = useRouter()
+
+onMounted(() => {
+  if (!store.state.gameStarted) {
+    router.replace({ name: 'NotFound'})
+    return
+  }
+})
 
 const isMyTurn = computed(
   () => store.isMyTurn
