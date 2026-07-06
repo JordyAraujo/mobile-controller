@@ -111,6 +111,26 @@ input:focus {
   border: 1px solid black;
 }
 
+.red {
+  background: var(--red);
+}
+
+.green {
+  background: var(--green);
+}
+
+.blue {
+  background: var(--blue);
+}
+
+.yellow {
+  background: var(--yellow);
+}
+
+.white {
+  background: white;
+}
+
 .dice {
   width: 100%;
   padding: 18px;

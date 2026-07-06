@@ -29,7 +29,7 @@ function startGame() {
       <h1>🎉 Sala {{ store.state.sessionId }}</h1>
       <ul class="players">
         <li v-for="player in store.state.players" :key="player.clientId">
-          <span class="player-color" :style="{ backgroundColor: player.color ? player.color : '#FFFFFF' }" />
+          <span class="player-color" :class="player.color || 'white'" />
           {{ player.playerName }}
         </li>
       </ul>
