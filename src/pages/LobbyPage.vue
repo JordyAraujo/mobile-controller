@@ -33,8 +33,11 @@ function startGame() {
           {{ player.playerName }}
         </li>
       </ul>
-      <button class="primary" :disabled="!canStart" @click="startGame">
+      <button v-if="canStart" class="primary" @click="startGame">
         Iniciar jogo
+      </button>
+      <button v-else class="primary" disabled>
+        Aguardando jogadores...
       </button>
     </section>
   </main>

@@ -13,13 +13,8 @@
 
 body {
   margin: 0;
-
   min-height: 100vh;
-
-  background:
-    linear-gradient(180deg,
-      #fff8e8,
-      #ffe8c5);
+  background: var(--secondary);
 }
 
 button,
@@ -29,12 +24,9 @@ input {
 
 .page {
   min-height: 100vh;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   padding: 24px;
 }
 
@@ -42,15 +34,10 @@ input {
 .controller-card {
   width: 100%;
   max-width: 420px;
-
   background: white;
-
   border-radius: 24px;
-
   padding: 24px;
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, .08);
+  box-shadow: var(--shadow);
 }
 
 h1 {
@@ -59,49 +46,45 @@ h1 {
 
 input {
   width: 100%;
-
   padding: 14px;
-
-  border: 1px solid #ddd;
-
+  border: var(--border);
   border-radius: 12px;
-
   margin-top: 12px;
+}
+
+input:focus {
+  border: var(--border-focused);
+  outline: none;
 }
 
 .primary {
   width: 100%;
-
   margin-top: 24px;
-
   border: 0;
-
   border-radius: 12px;
-
   padding: 14px;
-
   cursor: pointer;
-
-  background: #ff6b35;
+  background: var(--primary);
   color: white;
-
   font-weight: 700;
+}
+
+.primary:disabled {
+  background: var(--secondary);
+  cursor: not-allowed;
 }
 
 .colors {
   display: flex;
   gap: 12px;
-
   margin-top: 24px;
 }
 
 .colors button {
   width: 56px;
   height: 56px;
-
   border-radius: 50%;
   border: 4px solid transparent;
-
   cursor: pointer;
 }
 
@@ -117,44 +100,33 @@ input {
 .players li {
   display: flex;
   align-items: center;
-
   gap: 12px;
-
   padding: 12px 0;
 }
 
 .player-color {
   width: 18px;
   height: 18px;
-
   border-radius: 50%;
+  border: 1px solid black;
 }
 
 .dice {
   width: 100%;
-
   padding: 18px;
-
   border: none;
-
   border-radius: 16px;
-
   font-size: 1.2rem;
-
   margin-bottom: 32px;
-
   cursor: pointer;
-
-  background: #ff6b35;
+  background: var(--primary);
   color: white;
 }
 
 .dpad {
   display: flex;
   flex-direction: column;
-
   align-items: center;
-
   gap: 12px;
 }
 
@@ -166,17 +138,13 @@ input {
 .dpad button {
   width: 72px;
   height: 72px;
-
   border: none;
-
   border-radius: 16px;
-
   cursor: pointer;
-
   font-size: 1.5rem;
 }
 
 .ok {
-  background: #22c55e;
+  background: var(--confirm);
   color: white;
 }

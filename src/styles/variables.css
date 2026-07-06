@@ -1,0 +1,22 @@
+:root {
+  --red: #e60000;
+  --green: #008300;
+  --blue: #0163c6;
+  --yellow: #ffde00;
+
+  --confirm: #7bff30;
+
+  --primary: #ffad63;
+  --secondary: #ffe7c5;
+
+  --text: #3a2802;
+  --border: 1px solid #a5a5a5;
+  --border-focused: 1px solid var(--primary);
+
+  --shadow:
+    8px 8px 0 rgba(0, 0, 0, 0.15);
+
+  --radius: 18px;
+
+  --sidebar-width: 400px;
+}
