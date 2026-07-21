@@ -51,7 +51,7 @@ export const actions = {
     state.gameStarted = false
   },
 
-  setCurrentTurn(clientId: string | null) {
+  setCurrentTurnClientId(clientId: string | null) {
     state.currentTurnClientId = clientId
   },
 

@@ -12,6 +12,7 @@ export interface StoreState {
   players: Player[]
   gameStarted: boolean
   currentTurnClientId: string | null
+  isMyTurn: boolean
 }
 
 export const state = reactive<StoreState>({
@@ -19,5 +20,6 @@ export const state = reactive<StoreState>({
   self: null,
   players: [],
   gameStarted: false,
-  currentTurnClientId: null
+  currentTurnClientId: null,
+  isMyTurn: false
 })

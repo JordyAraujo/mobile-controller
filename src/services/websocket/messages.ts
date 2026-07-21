@@ -6,7 +6,6 @@ export type Direction =
 
 export interface JoinSessionMessage {
     type: 'join_session'
-
     payload: {
         sessionId: string
         clientId: string
@@ -17,6 +16,9 @@ export interface JoinSessionMessage {
 
 export interface StartGameMessage {
     type: 'start_game'
+    payload: {
+        sessionId: string
+    }
 }
 
 export interface RollDiceMessage {
@@ -29,7 +31,6 @@ export interface ConfirmMessage {
 
 export interface MoveMessage {
     type: 'move'
-
     payload: {
         direction: Direction
     }

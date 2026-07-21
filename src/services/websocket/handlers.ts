@@ -6,7 +6,7 @@ export function handleMessage(
 ) {
     switch (message.type) {
         case 'players_updated':
-            if(message.payload.players.some((player: { clientId: string }) => player.clientId === store.state.self?.clientId)) {
+            if (message.payload.players.some((player: { clientId: string }) => player.clientId === store.state.self?.clientId)) {
                 store.setPlayers(
                     message.payload.players
                 )
@@ -18,12 +18,13 @@ export function handleMessage(
             break
 
         case 'game_started':
+            store.setCurrentTurnClientId(message.payload.firstPlayerSessionId)
             store.startGame()
             router.push('/controller')
             break
 
         case 'turn_changed':
-            store.setCurrentTurn(
+            store.setCurrentTurnClientId(
                 message.payload.clientId
             )
             break

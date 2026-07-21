@@ -111,6 +111,16 @@ input:focus {
   border: 1px solid black;
 }
 
+.controller-player-color {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: inline-block;
+  margin-right: 8px;
+
+}
+
 .red {
   background: var(--red);
 }

@@ -14,17 +14,15 @@ export const getters = {
   ),
 
   isMyTurn: computed(
-    () =>
-      state.self?.clientId ===
-      state.currentTurnClientId
+    () => state.self?.clientId === state.currentTurnClientId
   ),
 
   currentPlayer: computed(
-    () =>
-      state.players.find(
-        player =>
-          player.clientId ===
-          state.currentTurnClientId
-      ) ?? null
+    () => state.currentTurnClientId ? state.players.find(
+          player =>
+            player.clientId ===
+            state.currentTurnClientId
+        ) ?? null
+        : null
   )
 }

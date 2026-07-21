@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { store } from '../store'
 import { Direction, websocketService } from '../services/websocket'
@@ -7,15 +7,12 @@ import { Direction, websocketService } from '../services/websocket'
 const router = useRouter()
 
 onMounted(() => {
+  console.log('Self client ID:', store.state.self?.clientId)
   if (!store.state.gameStarted) {
-    router.replace({ name: 'NotFound'})
+    router.replace({ name: 'NotFound' })
     return
   }
 })
-
-const isMyTurn = computed(
-  () => store.isMyTurn
-)
 
 function rollDice() {
   websocketService.rollDice()
@@ -32,8 +29,8 @@ function confirm() {
 
 <template>
   <main class="page">
-    <section class="controller-card">
-      <button class="dice" :disabled="!isMyTurn" @click="rollDice">
+    <section v-if="store.isMyTurn" class="controller-card">
+      <button class="dice" @click="rollDice">
         🎲 Jogar Dado
       </button>
       <div class="dpad">
@@ -47,6 +44,11 @@ function confirm() {
         </div>
         <button @click="move('down')">⬇️</button>
       </div>
+    </section>
+    <section v-else class="card">
+      <h1>🎲 Aguarde a sua vez</h1>
+      <span class="controller-player-color" :class="store.currentPlayer.value?.color || 'white'" /><span>{{
+        store.currentPlayer.value?.playerName }} está jogando!</span>
     </section>
   </main>
 </template>

@@ -11,7 +11,7 @@ class WebSocketService {
 
     connect() {
         if (this.socket?.readyState === WebSocket.OPEN) return
-            
+
         this.socket = new WebSocket(import.meta.env.VITE_WEBSOCKET_URL ?? 'ws://localhost:3001')
 
         this.socket.onopen = () => {
@@ -53,9 +53,12 @@ class WebSocketService {
         })
     }
 
-    startGame() {
+    startGame(sessionId: string) {
         this.send({
-            type: 'start_game'
+            type: 'start_game',
+            payload: {
+                sessionId: sessionId
+            }
         })
     }
 

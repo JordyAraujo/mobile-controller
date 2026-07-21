@@ -10,7 +10,7 @@ const playerName = ref('')
 onMounted(() => {
   const params = new URLSearchParams(window.location.search)
   if (!params.has('id') || params.get('id') === '') {
-    router.replace({ name: 'NotFound'})
+    router.replace({ name: 'NotFound' })
     return
   }
 })

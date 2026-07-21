@@ -20,10 +20,10 @@ export default createRouter({
       path: '/controller',
       component: ControllerPage
     },
-    { 
-      path: '/:pathMatch(.*)*', 
-      name: 'NotFound', 
-      component: NotFoundPage 
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFoundPage
     }
   ]
 })

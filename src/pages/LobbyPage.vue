@@ -8,7 +8,7 @@ const router = useRouter()
 
 onMounted(() => {
   if (!store.state.sessionId) {
-    router.replace({ name: 'NotFound'})
+    router.replace({ name: 'NotFound' })
     return
   }
 })
@@ -19,7 +19,7 @@ const canStart = computed(() =>
 )
 
 function startGame() {
-  websocketService.startGame()
+  websocketService.startGame(store.state.sessionId)
 }
 </script>
 
